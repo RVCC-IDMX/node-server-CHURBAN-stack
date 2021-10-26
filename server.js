@@ -16,15 +16,13 @@ server.listen(PORT, HOSTNAME, () => {
 console.log(__filename);
 console.log(__dirname); 
 
-const {writeFile, writeFileSync, appendFileSync} = require("fs");
 
-const newContent = "\nThis is some more new text"
+const {rename} = require("fs");
 
-appendFile('hi.txt', newContent, (err) => {
+rename("hi.txt", "hello.txt", (err) => {
 if (err) {
 console.error(err);
 return;
 }
-console.log("Content-written"); 
+console.log("File renamed!"); 
 });
-W
