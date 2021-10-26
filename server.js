@@ -17,9 +17,9 @@ console.log(__filename);
 console.log(__dirname); 
 
 
-const {rename} = require("fs");
+const {unlink} = require("fs");
 
-rename("hi.txt", "hello.txt", (err) => {
+unlink("hi.txt", "hello.txt", (err) => {
 if (err) {
 console.error(err);
 return;
