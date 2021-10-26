@@ -16,15 +16,15 @@ server.listen(PORT, HOSTNAME, () => {
 console.log(__filename);
 console.log(__dirname); 
 
-const {readFile, readFileSync} = require("fs");
+const {writeFile, writeFileSync, appendFileSync} = require("fs");
 
-try {
-const data = DreadFileSync("hi.txt", "utf8");
-console.log(data);
-}
-catch (err){
+const newContent = "\nThis is some more new text"
+
+appendFile('hi.txt', newContent, (err) => {
+if (err) {
 console.error(err);
+return;
 }
-
-
-console.log("Log from outside");
+console.log("Content-written"); 
+});
+W
