@@ -26,3 +26,8 @@ return;
 }
 console.log("File renamed!"); 
 });
+
+import { addNums } from "./adddNums.js";
+
+const sum = addNums(2,2);
+console.log(sum);
