@@ -1,33 +1,18 @@
-const http = require("http");
+const http = require('http');
+const fs = require('fs');
 
-const HOSTNAME = process.env.HOSTNAME || "localhost";
 const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((request, response) => {
-  response.statusCode = 200;
-  response.setHeader("Content-Type", "text/plain");
-  response.end("Hello-World");
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  fs.readFile('./index.html', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.end();
+    } else {
+      res.end(data);
+    }
+  });
 });
-
-server.listen(PORT, HOSTNAME, () => {
-  console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
-});
-
-console.log(__filename);
-console.log(__dirname); 
-
-
-const {unlink} = require("fs");
-
-unlink("hi.txt", "hello.txt", (err) => {
-if (err) {
-console.error(err);
-return;
-}
-console.log("File renamed!"); 
-});
-
-import { addNums } from "./adddNums.js";
-
-const sum = addNums(2,2);
-console.log(sum);
+server.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
